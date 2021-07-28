@@ -1,16 +1,14 @@
-# This is a sample Python script.
+from bs4 import BeautifulSoup
+import requests
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
+    'Accept': '*/*',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive'
+}
+res = requests.get("https://www.spitogatos.gr/pwliseis-katoikies/glyfada/prwti_dimosieusi_24wres", headers=headers)
+soup = BeautifulSoup(res.text, "html.parser")
+results = soup.findAll("div", {"class": "searchListing"})
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+for item in results:
+    print(item.find("h4", {"class": "tile-v5-sr__title"}).text)
