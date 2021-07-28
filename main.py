@@ -12,3 +12,4 @@ results = soup.findAll("div", {"class": "searchListing"})
 
 for item in results:
     print(item.find("h4", {"class": "tile-v5-sr__title"}).text)
+
