@@ -19,7 +19,7 @@ class Database:
         self.execute_query(query)
 
     def select_ad_with_url(self, ad_url):
-        query = "SELECT id FROM ads WHERE url = " + str(ad_url)
+        query = "SELECT id FROM ads WHERE url = '" + str(ad_url) + "';"
         ads = self.execute_read_query(query)
         if len(ads) > 0:
             return ads[0]
